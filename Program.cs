@@ -9,6 +9,14 @@ namespace InterfacePrac31
     internal class Program
     {
 
+        class Dummy : IDisposable
+        {
+            public void Dispose()
+            {
+                Console.WriteLine("Dispose() 메서드 호출됨");
+            }
+        }
+
         class Product : IComparable<Product>
         {
             public string Name { get; set; }
@@ -45,6 +53,11 @@ namespace InterfacePrac31
                 Console.WriteLine(item);
             }
 
+            using (Dummy dummy = new Dummy())
+            {
+                Console.WriteLine("using 블록 실행됨");
+            }
+            Console.WriteLine("using 블록 밖");
         }
     }
 }
